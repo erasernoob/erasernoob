@@ -1,5 +1,6 @@
 - 👋 Hi, I’m eraserNOOB
-<img height="150px" src="https://github-readme-stats.vercel.app/api?username=erasernoob&count_private=true&show_icons=true&bg_color=00000000&hide_title=true&show_icons=true&line_height=21" />
+| <a href="https://github.com/anuraghazra/github-readme-stats"><img align="center" src="https://github-readme-stats.vercel.app/api?username=erasernoob&show_icons=true&include_all_commits=true&theme=buefy&hide_border=true" alt="erasernoob's github stats" /></a> | <a href="https://github.com/anuraghazra/github-readme-stats"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=erasernoob&layout=compact&theme=buefy&hide_border=true" /></a> |
+| ------------- | ------------- |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Peter-JXL/Peter-JXL/output/github-contribution-grid-snake-dark.svg">
