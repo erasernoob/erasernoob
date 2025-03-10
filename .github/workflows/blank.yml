@@ -1,19 +1,17 @@
-name: generate animation
+name: generate animation and update stats
 
 on:
-  # run automatically every 2 hours
+  # 每 2 小时运行一次
   schedule:
-    - cron: "0 */2 * * *" 
+    - cron: "0 */2 * * *"
   
-  # allows to manually run the job at any time
+  # 允许手动触发
   workflow_dispatch:
   
-  # run on every push on the master branch
+  # 监听 master 分支的 push 事件
   push:
     branches:
-    - master
-  
-  
+      - master
 
 jobs:
   generate:
@@ -21,24 +19,57 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
-  
+
     steps:
-      # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
-      - name: generate github-contribution-grid-snake.svg
+      # Checkout 仓库
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # 生成 GitHub 贡献蛇动画
+      - name: Generate GitHub Contribution Grid Snake
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-  
-  
-      # push the content of <build_dir> to a branch
-      # the content will be available at https://raw.githubusercontent.com/<github_user>/<repository>/<target_branch>/<file> , or as github page
-      - name: push github-contribution-grid-snake.svg to the output branch
+
+      # 推送 GitHub 贡献蛇动画到 output 分支
+      - name: Push GitHub Contribution Grid Snake
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
           build_dir: dist
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN }}
+
+  update-stats:
+    permissions: 
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # Checkout 仓库
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # 生成 GitHub 统计数据并保存到 README.md
+      - name: Update GitHub Stats
+        uses: anuraghazra/github-readme-stats@latest
+        with:
+          token: ${{ secrets.GH_STATS_TOKEN }}  # 需要手动创建 GitHub Secrets
+          count_private: true
+          show_icons: true
+          theme: dark
+          hide_border: true
+
+      # 提交更新到仓库
+      - name: Commit & Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update GitHub Stats" || exit 0  # 没有变化时不会提交
+          git push
+
