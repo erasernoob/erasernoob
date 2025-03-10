@@ -1,7 +1,7 @@
 - 👋 Hi, I’m eraserNOOB
 
 
-| ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=erasernoob&count_private=true&show_icons=true&include_all_commits=true&theme=buefy&hide_border=true) | ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=erasernoob&count_private=true&layout=compact&theme=buefy&hide_border=true) |
+| ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=erasernoob&show_icons=true&include_all_commits=true&theme=buefy&hide_border=true) | ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=erasernoob&layout=compact&theme=buefy&hide_border=true) |
 | ------------- | ------------- |
 
 <picture>
