@@ -14,34 +14,34 @@ on:
       - master
 
 jobs:
-  generate:
-    permissions: 
-      contents: write
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+  # generate:
+  #   permissions: 
+  #     contents: write
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 5
 
-    steps:
-      # Checkout 仓库
-      - name: Checkout repo
-        uses: actions/checkout@v3
+  #   steps:
+  #     # Checkout 仓库
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v3
 
-      # 生成 GitHub 贡献蛇动画
-      - name: Generate GitHub Contribution Grid Snake
-        uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+  #     # 生成 GitHub 贡献蛇动画
+  #     - name: Generate GitHub Contribution Grid Snake
+  #       uses: Platane/snk/svg-only@v3
+  #       with:
+  #         github_user_name: ${{ github.repository_owner }}
+  #         outputs: |
+  #           dist/github-contribution-grid-snake.svg
+  #           dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      # 推送 GitHub 贡献蛇动画到 output 分支
-      - name: Push GitHub Contribution Grid Snake
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN }}
+  #     # 推送 GitHub 贡献蛇动画到 output 分支
+  #     - name: Push GitHub Contribution Grid Snake
+  #       uses: crazy-max/ghaction-github-pages@v3.1.0
+  #       with:
+  #         target_branch: output
+  #         build_dir: dist
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN }}
 
   update-stats:
     permissions: 
