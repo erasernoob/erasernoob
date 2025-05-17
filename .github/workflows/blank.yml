@@ -43,33 +43,33 @@ jobs:
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN }}
 
-  update-stats:
-    permissions: 
-      contents: write
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+  # update-stats:
+  #   permissions: 
+  #     contents: write
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 5
 
-    steps:
-      # Checkout 仓库
-      - name: Checkout repo
-        uses: actions/checkout@v3
+  #   steps:
+  #     # Checkout 仓库
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v3
 
-      # 生成 GitHub 统计数据并保存到 README.md
-      - name: Update GitHub Stats
-        uses: anuraghazra/github-readme-stats@latest
-        with:
-          token: ${{ secrets.GH_STATS_TOKEN }}  # 需要手动创建 GitHub Secrets
-          count_private: true
-          show_icons: true
-          theme: dark
-          hide_border: true
+  #     # 生成 GitHub 统计数据并保存到 README.md
+  #     - name: Update GitHub Stats
+  #       uses: anuraghazra/github-readme-stats@latest
+  #       with:
+  #         token: ${{ secrets.GH_STATS_TOKEN }}  # 需要手动创建 GitHub Secrets
+  #         count_private: true
+  #         show_icons: true
+  #         theme: dark
+  #         hide_border: true
 
-      # 提交更新到仓库
-      - name: Commit & Push Changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "Update GitHub Stats" || exit 0  # 没有变化时不会提交
-          git push
+  #     # 提交更新到仓库
+  #     - name: Commit & Push Changes
+  #       run: |
+  #         git config --global user.name "github-actions[bot]"
+  #         git config --global user.email "github-actions[bot]@users.noreply.github.com"
+  #         git add README.md
+  #         git commit -m "Update GitHub Stats" || exit 0  # 没有变化时不会提交
+  #         git push
 
